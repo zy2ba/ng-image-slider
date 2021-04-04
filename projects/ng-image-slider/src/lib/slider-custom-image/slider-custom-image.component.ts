@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { NgImageSliderService } from './../ng-image-slider.service';
+import { NgImageSliderService } from '../ng-image-slider.service';
 
 const youtubeRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/,
     validFileExtensions = ['jpeg', 'jpg', 'gif', 'png'],
@@ -38,6 +38,7 @@ export class SliderCustomImageComponent implements OnChanges {
     @Input() title: String = '';
     @Input() direction: string = 'ltr';
     @Input() ratio: boolean = false;
+    @Input() loading: 'lazy' | null = null;
 
     constructor(
         public imageSliderService: NgImageSliderService,
@@ -64,7 +65,7 @@ export class SliderCustomImageComponent implements OnChanges {
         this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
         this.fileExtension = url.split('.').pop().split(/\#|\?/)[0];
         if (this.imageSliderService.base64FileExtension(url)
-        && (validFileExtensions.indexOf(this.imageSliderService.base64FileExtension(url).toLowerCase()) > -1 
+        && (validFileExtensions.indexOf(this.imageSliderService.base64FileExtension(url).toLowerCase()) > -1
         || validVideoExtensions.indexOf(this.imageSliderService.base64FileExtension(url).toLowerCase()) > -1)) {
             this.fileExtension = this.imageSliderService.base64FileExtension(url);
         }
