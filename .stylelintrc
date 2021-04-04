@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "@tinkoff/linters/stylelint/bases/prettier.stylelint.json"
+  ],
+  "rules": {
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "ng-deep"
+        ]
+      }
+    ],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "include",
+          "extend",
+          "mixin",
+          "if"
+        ]
+      }
+    ],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "/^/deep/",
+          "/^mat-/"
+        ]
+      }
+    ],
+    "no-empty-source": null,
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreKeywords": [
+          "/A\\d\\d/"
+        ]
+      }
+    ]
+  }
+}

@@ -9,8 +9,11 @@
     "build": "ng build ng-image-slider --watch --prod=false",
     "build:prod": "ng build ng-image-slider --configuration=production --prod",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "lint": "npm run prettier && npm run lint:es && npm run lint:scss",
+    "prettier": "npx prettier --write --loglevel=warn --ignore-unknown=true \"src/**/*\" \"projects/**/*\"",
+    "lint:es": "eslint -c \".eslintrc.js\" --fix \"src/**/*.{ts,js}\" \"projects/**/*.{ts,js}\"  \"*.{ts,js}\" --ignore-pattern \"*-e2e*\"",
+    "lint:scss": "stylelint --config .stylelintrc --fix \"src/**/*.scss\" \"projects/**/*.scss\""
   },
   "files": [
     "dist/ng-image-slider"
@@ -24,7 +27,9 @@
     "@angular/platform-browser": "^9.1.12",
     "@angular/platform-browser-dynamic": "^9.1.12",
     "@angular/router": "^9.1.12",
+    "@tinkoff/linters": "^1.0.0-rc.13",
     "core-js": "^3.2.1",
+    "prettier": "^2.2.1",
     "rxjs": "^6.6.0",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.3"
